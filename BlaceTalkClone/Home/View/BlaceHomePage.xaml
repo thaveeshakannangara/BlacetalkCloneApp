@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BlaceTalkClone.Home.View.BlaceHomePage" BackgroundColor="#f2f2f2">
+
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" >
+                <Label HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="blace" FontFamily="PoppinsSemiBolds" TextColor="Black" 
+                                  FontAttributes="Bold" FontSize="25"/>
+                            <Span Text="talk" FontFamily="Blacksword" TextColor="#3d3ded" FontSize="20" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Image Source="info_icon.png" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0" HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        
+        <ScrollView>
+
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <!--Recent Episodes-->
+                <StackLayout Grid.Row="0" Margin="20,20,20,20" VerticalOptions="Start">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+
+                        <Label Grid.Row="0" Text="Recent Episodes" FontSize="16" TextColor="Black" HorizontalOptions="Start" />
+
+                        <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="End">
+                            <Label Text="View All" TextColor="#3d3ded" VerticalOptions="Center" />
+                            <Label Text="&#xf30b;" TextColor="#3d3ded" FontFamily="FontAwesomeSolid" VerticalOptions="Center" />
+                        </StackLayout>
+
+
+                        <CollectionView x:Name="EpisodesCollection" Grid.Row="1" SelectionMode="Single" HeightRequest="530" Margin="0,25,0,0">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BackgroundColor="White" Padding="0,10,0,10" HasShadow="False" BorderColor="#e1e1e1" CornerRadius="10">
+
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Label Grid.Row="0" Margin="20,10,20,0" LineBreakMode="WordWrap">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding EpisodeNo}" TextColor="Black" FontSize="16"/>
+                                                        <Span Text=" / " TextColor="Black" FontSize="16"/>
+                                                        <Span Text="{Binding Title}" FontAttributes="Bold" TextColor="Black" FontSize="16" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <StackLayout Grid.Row="1">
+                                                <Grid ColumnSpacing="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="25"/>
+                                                        <ColumnDefinition Width="15"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="25" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <BoxView Grid.Column="0" HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="#e1e1e1" VerticalOptions="Center" Margin="0"/>
+                                                    <Image Grid.Column="1" Source="play_icon.png" Aspect="AspectFill" HeightRequest="25" WidthRequest="25" Margin="0" />
+                                                    <BoxView Grid.Column="2" HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="#e1e1e1" VerticalOptions="Center" Margin="0"/>
+                                                </Grid>
+
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="20,0,20,0" VerticalOptions="Center" Padding="0">
+                                                <Label Text="{Binding ChannelName}" TextColor="#3d3ded" FontAttributes="Bold" FontSize="12" 
+                                                    HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+
+                                                <Label Text="{Binding Date}" TextColor="#9e9e9e" FontSize="12" FontAttributes="Bold" />
+                                            </StackLayout>
+
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </Grid>
+                </StackLayout>
+                
+                
+                <!--Top Channels-->
+                <StackLayout Grid.Row="1" BackgroundColor="White" Padding="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Text="Top Channels" FontSize="16" TextColor="Black" HorizontalOptions="Start" />
+
+                        <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="End">
+                            <Label Text="View All" TextColor="#3d3ded" VerticalOptions="Center" />
+                            <Label Text="&#xf30b;" TextColor="#3d3ded" FontFamily="FontAwesomeSolid" VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <CollectionView x:Name="ChannelsCollection"  Grid.Row="1" SelectionMode="Single" HeightRequest="250" Margin="0,25,0,0">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BackgroundColor="#f2f2f2" Padding="20,15,15,15" HasShadow="False" BorderColor="#e1e1e1" CornerRadius="10">
+
+                                        <Grid ColumnSpacing="20">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="0" CornerRadius="10" 
+                                                        BackgroundColor="Transparent" BorderColor="#e1e1e1">
+                                                <Image Source="{Binding ChannelImage}" Aspect="Fill" HeightRequest="45" WidthRequest="45" />
+                                            </Frame>
+
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ChannelName}" FontAttributes="Bold" TextColor="Black" VerticalOptions="End"/>
+                                            <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" TextColor="#3d3ded" VerticalOptions="Start">
+
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding EpisodesCount}" />
+                                                        <Span Text=" " />
+                                                        <Span Text="{Binding EpisodeString}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+
+                                            </Label>
+
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </Grid>
+                </StackLayout>
+
+
+                <!--Speakers-->
+                <StackLayout Grid.Row="2" Margin="20,20,20,20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Text="Speakers" FontSize="16" TextColor="Black" HorizontalOptions="Start" />
+
+                        <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="End">
+                            <Label Text="View All" TextColor="#3d3ded" VerticalOptions="Center" />
+                            <Label Text="&#xf30b;" TextColor="#3d3ded" FontFamily="FontAwesomeSolid" VerticalOptions="Center" />
+                        </StackLayout>
+
+                        <CollectionView x:Name="SpeakersCollection"  Grid.Row="1" SelectionMode="Single" HeightRequest="250" Margin="0,25,0,0">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BackgroundColor="White" Padding="20,15,15,15" HasShadow="False" BorderColor="#e1e1e1" CornerRadius="10">
+
+                                        <Grid ColumnSpacing="20">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="0" CornerRadius="10" 
+                                                BackgroundColor="Transparent" BorderColor="#e1e1e1">
+                                                <Image Source="{Binding SpeakerImage}" Aspect="Fill" HeightRequest="45" WidthRequest="45" />
+                                            </Frame>
+
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding SpeakerName}" FontAttributes="Bold" TextColor="Black" VerticalOptions="End"/>
+                                            <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" TextColor="#3d3ded" VerticalOptions="Start">
+
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding EpisodesCount}" />
+                                                        <Span Text=" " />
+                                                        <Span Text="{Binding EpisodeString}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+
+                                            </Label>
+
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+
+                    </Grid>
+                </StackLayout>
+       
+            </Grid>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>
