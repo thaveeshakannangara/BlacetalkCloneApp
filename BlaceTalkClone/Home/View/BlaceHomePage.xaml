@@ -1,7 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlaceTalkClone.Home.View.BlaceHomePage" BackgroundColor="#f2f2f2">
+             x:Class="BlaceTalkClone.Home.View.BlaceHomePage"
+             BackgroundColor="{StaticResource HomeBackgroundColor}">
+
+
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        
+
+    </ContentPage.Resources>
+
 
     <NavigationPage.TitleView>
         <StackLayout>
@@ -9,20 +32,19 @@
                 <Label HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="blace" FontFamily="PoppinsSemiBolds" TextColor="Black" 
-                                  FontAttributes="Bold" FontSize="25"/>
-                            <Span Text="talk" FontFamily="Blacksword" TextColor="#3d3ded" FontSize="20" />
+                            <Span Text="blace" FontFamily="PoppinsSemiBolds" TextColor="{StaticResource PrimaryTextColor}" 
+                                  FontAttributes="Bold" FontSize="25" />
+                            <Span Text="talk" FontFamily="Blacksword" TextColor="{StaticResource AppAccentColor}" FontSize="20" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Image Source="info_icon.png" WidthRequest="20" HeightRequest="20" Margin="0,0,10,0" HorizontalOptions="EndAndExpand" />
+                <Image Style="{StaticResource NavBarInfoIconStyle}" />
             </StackLayout>
         </StackLayout>
-    </NavigationPage.TitleView>
-    <ContentPage.Content>
-        
-        <ScrollView>
+    </NavigationPage.TitleView> 
 
+    <ContentPage.Content>      
+        <ScrollView>
             <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -31,30 +53,28 @@
                 </Grid.RowDefinitions>
                 
                 <!--Recent Episodes-->
-                <StackLayout Grid.Row="0" Margin="20,20,20,20" VerticalOptions="Start">
+                <StackLayout Grid.Row="0" Style="{StaticResource HomeRecentStackStyle}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-
-                        <Label Grid.Row="0" Text="Recent Episodes" FontSize="16" TextColor="Black" HorizontalOptions="Start" />
+                        <Label Grid.Row="0" Text="Recent Episodes" Style="{StaticResource SectionTitleStyle}"  />
 
                         <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="End">
-                            <Label Text="View All" TextColor="#3d3ded" VerticalOptions="Center" />
-                            <Label Text="&#xf30b;" TextColor="#3d3ded" FontFamily="FontAwesomeSolid" VerticalOptions="Center" />
+                            <Label Style="{StaticResource ViewAllTitleStyle}"  />
+                            <Label Style="{StaticResource ArrowIconStyle}" />
                         </StackLayout>
 
-
-                        <CollectionView x:Name="EpisodesCollection" Grid.Row="1" SelectionMode="Single" HeightRequest="530" Margin="0,25,0,0">
+                        <CollectionView x:Name="EpisodesCollection" Grid.Row="1" SelectionMode="None" HeightRequest="530" Margin="0,25,0,0">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
                             </CollectionView.ItemsLayout>
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame BackgroundColor="White" Padding="0,10,0,10" HasShadow="False" BorderColor="#e1e1e1" CornerRadius="10">
+                                    <Frame Style="{StaticResource EpisodeFrameStyle}">
 
                                         <Grid>
                                             <Grid.RowDefinitions>
@@ -63,12 +83,12 @@
                                                 <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
 
-                                            <Label Grid.Row="0" Margin="20,10,20,0" LineBreakMode="WordWrap">
+                                            <Label Grid.Row="0" Style="{StaticResource EpisodeTitleStyle}">
                                                 <Label.FormattedText>
                                                     <FormattedString>
-                                                        <Span Text="{Binding EpisodeNo}" TextColor="Black" FontSize="16"/>
-                                                        <Span Text=" / " TextColor="Black" FontSize="16"/>
-                                                        <Span Text="{Binding Title}" FontAttributes="Bold" TextColor="Black" FontSize="16" />
+                                                        <Span Text="{Binding EpisodeNo}" />
+                                                        <Span Text=" / " />
+                                                        <Span Text="{Binding Title}" FontAttributes="Bold"/>
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>
@@ -84,18 +104,17 @@
                                                         <RowDefinition Height="25" />
                                                     </Grid.RowDefinitions>
 
-                                                    <BoxView Grid.Column="0" HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="#e1e1e1" VerticalOptions="Center" Margin="0"/>
-                                                    <Image Grid.Column="1" Source="play_icon.png" Aspect="AspectFill" HeightRequest="25" WidthRequest="25" Margin="0" />
-                                                    <BoxView Grid.Column="2" HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="#e1e1e1" VerticalOptions="Center" Margin="0"/>
+                                                    <BoxView Grid.Column="0"  Style="{StaticResource EpisodeBoxStyle}" />
+                                                    <Image Grid.Column="1" Style="{StaticResource EpisodePlayIconStyle}" />
+                                                    <BoxView Grid.Column="2" Style="{StaticResource EpisodeBoxStyle}" />
                                                 </Grid>
 
                                             </StackLayout>
 
                                             <StackLayout Grid.Row="2" Orientation="Horizontal" Margin="20,0,20,0" VerticalOptions="Center" Padding="0">
-                                                <Label Text="{Binding ChannelName}" TextColor="#3d3ded" FontAttributes="Bold" FontSize="12" 
-                                                    HorizontalOptions="Start" HorizontalTextAlignment="Start"/>
+                                                <Label Text="{Binding ChannelName}" Style="{StaticResource EpisodeChannelNameStyle}" />
 
-                                                <Label Text="{Binding Date}" TextColor="#9e9e9e" FontSize="12" FontAttributes="Bold" />
+                                                <Label Text="{Binding Date}" Style="{StaticResource EpisodeDateStyle}" />
                                             </StackLayout>
 
                                         </Grid>
@@ -106,31 +125,30 @@
 
                     </Grid>
                 </StackLayout>
-                
-                
+                                
                 <!--Top Channels-->
-                <StackLayout Grid.Row="1" BackgroundColor="White" Padding="20">
+                <StackLayout Grid.Row="1" Style="{StaticResource HomeTopChannelStackStyle}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Text="Top Channels" FontSize="16" TextColor="Black" HorizontalOptions="Start" />
+                        <Label Grid.Row="0" Text="Top Channels" Style="{StaticResource SectionTitleStyle}" />
 
                         <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="End">
-                            <Label Text="View All" TextColor="#3d3ded" VerticalOptions="Center" />
-                            <Label Text="&#xf30b;" TextColor="#3d3ded" FontFamily="FontAwesomeSolid" VerticalOptions="Center" />
+                            <Label Style="{StaticResource ViewAllTitleStyle}" />
+                            <Label Style="{StaticResource ArrowIconStyle}"/>
                         </StackLayout>
 
-                        <CollectionView x:Name="ChannelsCollection"  Grid.Row="1" SelectionMode="Single" HeightRequest="250" Margin="0,25,0,0">
+                        <CollectionView x:Name="ChannelsCollection"  Grid.Row="1" SelectionMode="None" HeightRequest="250" Margin="0,25,0,0">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
                             </CollectionView.ItemsLayout>
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame BackgroundColor="#f2f2f2" Padding="20,15,15,15" HasShadow="False" BorderColor="#e1e1e1" CornerRadius="10">
+                                    <Frame BackgroundColor="#f2f2f2" Style="{StaticResource ChannelFrameStyle}" >
 
                                         <Grid ColumnSpacing="20">
                                             <Grid.RowDefinitions>
@@ -142,13 +160,12 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
 
-                                            <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="0" CornerRadius="10" 
-                                                        BackgroundColor="Transparent" BorderColor="#e1e1e1">
-                                                <Image Source="{Binding ChannelImage}" Aspect="Fill" HeightRequest="45" WidthRequest="45" />
+                                            <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource ChannelImageFrameStyle}">
+                                                <Image Source="{Binding ChannelImage}" Style="{StaticResource ChannelImageStyle}" />
                                             </Frame>
 
-                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ChannelName}" FontAttributes="Bold" TextColor="Black" VerticalOptions="End"/>
-                                            <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" TextColor="#3d3ded" VerticalOptions="Start">
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding ChannelName}" Style="{StaticResource ChannelTitleStyle}" />
+                                            <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource ChannelDescriptionStyle}">
 
                                                 <Label.FormattedText>
                                                     <FormattedString>
@@ -169,30 +186,29 @@
                     </Grid>
                 </StackLayout>
 
-
                 <!--Speakers-->
-                <StackLayout Grid.Row="2" Margin="20,20,20,20">
+                <StackLayout Grid.Row="2" Style="{StaticResource HomeSpeakersStackStyle}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Text="Speakers" FontSize="16" TextColor="Black" HorizontalOptions="Start" />
+                        <Label Grid.Row="0" Text="Speakers" Style="{StaticResource SectionTitleStyle}" />
 
                         <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="End">
-                            <Label Text="View All" TextColor="#3d3ded" VerticalOptions="Center" />
-                            <Label Text="&#xf30b;" TextColor="#3d3ded" FontFamily="FontAwesomeSolid" VerticalOptions="Center" />
+                            <Label Style="{StaticResource ViewAllTitleStyle}" />
+                            <Label Style="{StaticResource ArrowIconStyle}" />
                         </StackLayout>
 
-                        <CollectionView x:Name="SpeakersCollection"  Grid.Row="1" SelectionMode="Single" HeightRequest="250" Margin="0,25,0,0">
+                        <CollectionView x:Name="SpeakersCollection" Grid.Row="1" SelectionMode="None" HeightRequest="250" Margin="0,25,0,0">
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
                             </CollectionView.ItemsLayout>
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame BackgroundColor="White" Padding="20,15,15,15" HasShadow="False" BorderColor="#e1e1e1" CornerRadius="10">
+                                    <Frame BackgroundColor="White" Style="{StaticResource ChannelFrameStyle}">
 
                                         <Grid ColumnSpacing="20">
                                             <Grid.RowDefinitions>
@@ -204,13 +220,12 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
 
-                                            <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="0" CornerRadius="10" 
-                                                BackgroundColor="Transparent" BorderColor="#e1e1e1">
-                                                <Image Source="{Binding SpeakerImage}" Aspect="Fill" HeightRequest="45" WidthRequest="45" />
+                                            <Frame Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource ChannelImageFrameStyle}">
+                                                <Image Source="{Binding SpeakerImage}" Style="{StaticResource ChannelImageStyle}" />
                                             </Frame>
 
-                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding SpeakerName}" FontAttributes="Bold" TextColor="Black" VerticalOptions="End"/>
-                                            <Label Grid.Row="1" Grid.Column="1" FontAttributes="Bold" TextColor="#3d3ded" VerticalOptions="Start">
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding SpeakerName}" Style="{StaticResource ChannelTitleStyle}"/>
+                                            <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource ChannelDescriptionStyle}">
 
                                                 <Label.FormattedText>
                                                     <FormattedString>
@@ -227,13 +242,11 @@
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-
 
                     </Grid>
                 </StackLayout>
        
             </Grid>
-        </ScrollView>
-        
+        </ScrollView>       
     </ContentPage.Content>
 </ContentPage>

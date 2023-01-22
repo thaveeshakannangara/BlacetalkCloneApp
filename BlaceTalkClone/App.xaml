@@ -4,5 +4,204 @@
              x:Class="BlaceTalkClone.App">
     <Application.Resources>
 
+        <!--Base Colors-->
+        <Color x:Key="OnboardingBackgroundColor">White</Color>
+        <Color x:Key="HomeBackgroundColor">#f2f2f2</Color>
+        <Color x:Key="AppAccentColor">#3d3ded</Color>
+        <Color x:Key="CardBorderColor">#e1e1e1</Color>
+        <Color x:Key="PrimaryTextColor">Black</Color>
+
+        <!--Nav Bar Styles-->
+        <Style x:Key="NavBarInfoIconStyle" TargetType="Image">
+            <Setter Property="Source" Value="info_icon.png" />
+            <Setter Property="WidthRequest" Value="20" />
+            <Setter Property="HeightRequest" Value="20" />
+            <Setter Property="Margin" Value="0,0,10,0" />
+            <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+        </Style>
+
+        <!--Onbarding Styles-->
+        <Style x:Key="OnboardingSkipButton" TargetType="Button">
+            <Setter Property="BorderColor" Value="#9e9e9e" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="#9e9e9e" />
+            <Setter Property="HorizontalOptions" Value="End" />
+            <Setter Property="HeightRequest" Value="30" />
+            <Setter Property="WidthRequest" Value="80" />
+            <Setter Property="BorderWidth" Value="1" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius">
+                <Setter.Value>
+                    <OnPlatform x:TypeArguments="x:Int32">
+                        <On Platform="Android" Value="20" />
+                        <On Platform="iOS" Value="16" />
+                    </OnPlatform>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="OnboardingTitleStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0,30,0,0" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+        </Style>
+
+        <Style x:Key="OnboardingDescriptionStyle" TargetType="Label">
+
+            <Setter Property="TextColor" Value="#8d8d8d"/>
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="CharacterSpacing" Value="1" />
+            <Setter Property="LineHeight" Value="1.3" />
+            <Setter Property="Margin" Value="10,20,10,0" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+
+            <Setter Property="FontSize">
+                <Setter.Value>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android" Value="14" />
+                        <On Platform="iOS" Value="17" />
+                    </OnPlatform>
+                </Setter.Value>
+
+            </Setter>
+        </Style>
+
+        <Style x:Key="OnboardingActivityIndicatorStyle" TargetType="IndicatorView">
+            <Setter Property="IndicatorColor" Value="LightGray"/>
+            <Setter Property="IndicatorsShape" Value="Circle" />
+            <Setter Property="IndicatorSize" Value="12" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Start" />
+            <Setter Property="SelectedIndicatorColor" Value="{StaticResource AppAccentColor}" />
+            <Setter Property="Margin" Value="0,0,0,20" />
+        </Style>
+
+        <Style x:Key="OnboardingCarouselViewStyle" TargetType="CarouselView">
+            <Setter Property="Margin" Value="10,20,10,0" />
+            <Setter Property="IsSwipeEnabled" Value="True" />
+            <Setter Property="Loop" Value="False" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+            <Setter Property="HeightRequest" Value="150" />
+        </Style>
+
+
+        <!--Home Styles-->
+        <Style x:Key="HomeRecentStackStyle" TargetType="StackLayout">
+            <Setter Property="Margin" Value="20,20,20,20" />
+            <Setter Property="VerticalOptions" Value="Start" />
+        </Style>
+
+        <Style x:Key="HomeTopChannelStackStyle" TargetType="StackLayout">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Padding" Value="20" />
+        </Style>
+
+        <Style x:Key="HomeSpeakersStackStyle" TargetType="StackLayout">
+            <Setter Property="Margin" Value="20,20,20,20" />
+        </Style>
+
+        <Style x:Key="SectionTitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+        </Style>
+
+        <Style x:Key="ViewAllTitleStyle" TargetType="Label">
+            <Setter Property="Text" Value="View All" />
+            <Setter Property="TextColor" Value="{StaticResource AppAccentColor}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+
+        <Style x:Key="ArrowIconStyle" TargetType="Label">
+            <Setter Property="Text" Value="&#xf30b;" />
+            <Setter Property="TextColor" Value="{StaticResource AppAccentColor}" />
+            <Setter Property="FontFamily" Value="FontAwesomeSolid" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+
+        <Style x:Key="ChannelImageFrameStyle" TargetType="Frame">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="BorderColor" Value="{StaticResource CardBorderColor}" />
+        </Style>
+
+        <Style x:Key="ChannelImageStyle" TargetType="Image">
+            <Setter Property="Aspect" Value="Fill" />
+            <Setter Property="HeightRequest" Value="45" />
+            <Setter Property="WidthRequest" Value="45" />
+        </Style>
+
+        <Style x:Key="ChannelTitleStyle" TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="VerticalOptions" Value="End" />
+        </Style>
+
+        <Style x:Key="ChannelDescriptionStyle" TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource AppAccentColor}" />
+            <Setter Property="VerticalOptions" Value="Start" />
+        </Style>
+
+        <Style x:Key="ChannelFrameStyle" TargetType="Frame">
+            <Setter Property="Padding" Value="20,15,15,15" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="BorderColor" Value="{StaticResource CardBorderColor}" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+
+
+        <Style x:Key="EpisodeTitleStyle" TargetType="Label">
+            <Setter Property="Margin" Value="20,10,20,0" />
+            <Setter Property="LineBreakMode" Value="WordWrap" />
+            <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+        <Style x:Key="EpisodeChannelNameStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource AppAccentColor}"/>
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalOptions" Value="Start"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start" />
+        </Style>
+
+        <Style x:Key="EpisodeDateStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#9e9e9e" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+
+        <Style x:Key="EpisodeBoxStyle" TargetType="BoxView">
+            <Setter Property="HeightRequest" Value="1"/>
+            <Setter Property="HorizontalOptions" Value="Fill"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource CardBorderColor}" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+
+        <Style x:Key="EpisodePlayIconStyle" TargetType="Image">
+            <Setter Property="Source" Value="play_icon.png" />
+            <Setter Property="Aspect" Value="AspectFill" />
+            <Setter Property="HeightRequest" Value="25" />
+            <Setter Property="WidthRequest" Value="25" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+
+        <Style x:Key="EpisodeFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="Padding" Value="0,10,0,10" />
+            <Setter Property="HasShadow" Value="False" />
+            <Setter Property="BorderColor" Value="{StaticResource CardBorderColor}" />
+            <Setter Property="CornerRadius" Value="10" />
+        </Style>
+
     </Application.Resources>
 </Application>
